@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семейная Галерея</title>
+    <style>
+        body {
+            background-color: white; /* Белый фон */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .gallery-photo {
+            max-width: 90%;
+            height: auto;
+            margin: 10px auto; 
+            display: block; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #bg-music {
+            display: none; /* Скрываем плеер */
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" src="music.mp3" loop autoplay></audio>
+
+    <img src="Сканирование_20251210-0109-01.jpg" alt="Семейное фото 1" class="gallery-photo">
+    <img src="Сканирование_20251210-0109-02.jpg" alt="Семейное фото 2" class="gallery-photo">
+    <img src="Сканирование_20251210-0109-03.jpg" alt="Семейное фото 3" class="gallery-photo">
+    
+
+    <script>
+        // Код для попытки автоматического запуска музыки при загрузке или касании
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('bg-music');
+            
+            music.play().catch(error => {
+                // Если заблокировано, запускаем при первом касании/клике
+                document.body.addEventListener('touchstart', () => {
+                    music.play().catch(() => {});
+                }, { once: true });
+                document.body.addEventListener('click', () => {
+                    music.play().catch(() => {});
+                }, { once: true });
+            });
+        });
+    </script>
+</body>
+</html>
